@@ -6,6 +6,17 @@ This docker app is built from alpine:edge with the most recent p7zip package; th
 
 - Docker :whale:
 
-# Usage
+## Usage
 
-`docker run --rm -v $(pwd):/app dnotes/7z [cmd]`
+Run the image, mounting the folder containing your data as /app, and then work with files as if you are currently in /app. So:
+
+    docker run -it --rm -v $(pwd):/app dnotes/7z [cmd]
+
+As an example, to extract `/home/dnotes/file.7z`, you would run one of the following:
+
+    docker run -it --rm -v /home/dnotes:/app dnotes/7z x file.7z` 
+
+or
+
+    cd /home/dnotes
+    docker run -it --rm -v $(pwd):/app dnotes/7z x file.7z
